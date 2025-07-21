@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Blog{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block header %}
-    <h1><b>Posts<b></h1>
+    <h1><b>{{ article.title }}<b></h1>
 {% endblock %}
 
 {% block content %}
-Hello, world! <i class="fa-solid fa-face-smile"></i>
+<p><b>TODO</b>: figure out how to do this</p>
+{% endblock %}
 
 {% block footer %}
+  <p><b>TODO</b>: figure how to get this to work
   <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
   <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
 {% endblock %}
