@@ -1,42 +1,21 @@
 {% extends 'base.html' %}
 
-{% block stylesheets %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='blog/index.css') }}">
-{% endblock %}
+{% block title %}{{ SITENAME }}{% endblock %}
 
-{% block menu %}
-  {% if g.user %}
-    <span><a class="w3-btn w3-theme-dark" href="{{ url_for('blog.create') }}">New</a></span>
-  {% endif %}
-{% endblock %}
-
-{% block header %}
-<div class="w3-container w3-mobile">
-  <div class="w3-panel w3-theme w3-center">
-    <h2>{% block title %}Blog Posts{% endblock %}</h2>
-  </div>
-</div>
+{% block head %}
+    <h1><b>{{ SITENAME }}<b></h1>
+    <p>{{ SITESUBTITLE }}</p>
 {% endblock %}
 
 {% block content %}
-<div class="w3-container margins">
-  {% for post in posts %}
-    <div class="w3-panel w3-border w3-padding-16 w3-mobile">
-      <div class="w3-cell-row w3-theme-l3">
-        <div class="w3-container w3-cell title">
-          <h1>{{ post['title'] }}</h1>
-        </div>
-        <div class="w3-container w3-cell w3-cell-bottom w3-right-align">
-          by {{ post['username'] }} on {{ post['created'].strftime('%m/%d/%Y') }}
-        </div>
-        {% if g.user['id'] == post['author_id'] %}
-          <div class="w3-container w3-cell w3-cell-bottom w3-right-align"><a class="w3-btn w3-theme-dark" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a></div>
-        {% endif %}
-      </div>
-      <div class="w3-cell-row w3-mobile">
-        <div class="w3-container w3-cell">{{ md.markdown(post['body']) | safe}}</div>
-      </div>
-    </div>
-  {% endfor %}
-</div>
+<p>Hello! I'm Sarah! I'm a geeky emo girl<i class="fa-regular fa-heart"></i> who'll be blogging everything tech, including games.
+<p>Please check me out on social media or shoot me an email.</p>
+<p>
+  <div class="w3-xlarge w3-section">
+    <a href="https://discord.com/users/sarahrogue." class="w3-hover-opacity"><i class="fa-brands fa-discord"></i></a>
+    <a href="https://x.com/SarahRogue81" class="w3-hover-opacity"><i class="fa-brands fa-twitter"></i></a>
+    <a href="mailto:emo-girl@sarah-rogue.me" class="w3-hover-opacity"><i class="fa-regular fa-envelope"></i></a>
+
+  </div>
+</p>
 {% endblock %}
