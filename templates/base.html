@@ -2,63 +2,44 @@
 <html lang="en">
 
 <head>
-  <title>{{ SITENAME }} - {% block title %}{% endblock %}</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://www.w3schools.com/w3css/5/w3.css" rel="stylesheet">
-  <link href="{{ W3CSS_COLORCLASS }}" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="theme/assets/fontawesome-free-6.7.2-web/css/fontawesome.css" rel="stylesheet" />
-  <link href="theme/assets/fontawesome-free-6.7.2-web/css/brands.css" rel="stylesheet" />
-  <link href="theme/assets/fontawesome-free-6.7.2-web/css/regular.css" rel="stylesheet" />
-  <link href="theme/css/base.css" rel="stylesheet" />
-  {% block stylesheets %}
-  {% endblock %}
+    <title>{{ SITENAME }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://www.w3schools.com/w3css/5/w3.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+    <link href="theme/assets/fontawesome-free-7.0.0-web/css/all.min.css" rel="stylesheet"/>
+    <link href="theme/css/base.css" rel="stylesheet"/>
+    {% block stylesheets %}{% endblock %}
 </head>
 
 <body class="w3-light-grey">
 
-<!-- Links (sit on top) -->
-<div class="w3-top">
-  <div class="w3-row w3-padding w3-dark-grey">
-    <div class="w3-col s3">
-      <a href="index.html" class="w3-button w3-block w3-black">Home</a>
-    </div>
-    <div class="w3-col s3">
-      <a href="blog.html" class="w3-button w3-block w3-black">Blog</a>
-    </div>
-    <div class="w3-col s3">
-      <a href="about.html" class="w3-button w3-block w3-black">About</a>
-    </div>
-    <div class="w3-col s3">
-      <a href="contact-me.html" class="w3-button w3-block w3-black">Contact Me</a>
-    </div>
-</div>
-
-<!-- w3-content defines a container for fixed size centered content, 
+<!-- w3-content defines a container for fixed size centered content,
 and is wrapped around the whole page content, except for the footer in this example -->
-<div class="w3-content w3-large fixed-size">
+<div class="w3-content" style="max-width:1400px">
 
-<!-- Header -->
-<header class="w3-container w3-center w3-padding-32">
-{% block header %}
-{% endblock %}
-</header>
+    <!-- Header -->
+    <header class="w3-container w3-center w3-padding-32">
+        {% block header %}
+        {% endblock %}
+    </header>
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-<!-- END w3-content -->
+    <!-- END w3-content -->
 </div>
 
 <footer class="w3-container w3-dark-grey w3-padding-16 w3-margin-top w3-small">
-{% block footer %}
-{% endblock %}
-  <p>&copy {{ NOW | strftime('%Y') }} {{ AUTHOR }}</p>
-  <p><a href="index.html">{{ SITENAME }}</a> by <a href="about.html">{{ AUTHOR }}</a> is licensed under <a href="{{ LICENSE_URL }}">{{ LICENSE_NAME }}</a></p>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    {% block footer %}
+    {% endblock %}
+    <p>&copy {{ NOW | strftime('%Y') }} {{ AUTHOR }}</p>
+    <p><a href="index.html">{{ SITENAME }}</a> by <a href="about.html">{{ AUTHOR }}</a> is licensed under <a
+            href="{{ LICENSE_URL }}">{{ LICENSE_NAME }}</a></p>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 </body>
 
