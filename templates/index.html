@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1><b>{{ SITENAME }}</b></h1>
+    <h1><strong>{{ SITENAME }}</strong></h1>
     <p>{{ SITESUBTITLE }}</p>
 {% endblock %}
 
@@ -11,65 +11,42 @@
 
         <!-- Blog entries -->
         <div class="w3-col l8 s12">
-            <!-- Blog entry -->
-            <div class="w3-card-4 w3-margin w3-white">
-                <img src="/images/woods.webp" alt="Nature" style="width:100%">
-                <div class="w3-container">
-                    <h3><strong>TITLE HEADING</strong></h3>
-                    <h5>Title description, <span class="w3-opacity">April 7, 2014</span></h5>
-                </div>
-
-                <div class="w3-container">
-                    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem
-                        euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed
-                        ultricies mi non congue ullam corper. Praesent tincidunt sed
-                        tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam
-                        non fringilla.</p>
-                    <div class="w3-row">
-                        <div class="w3-col m8 s12">
-                            <p>
-                                <button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b>
-                                </button>
-                            </p>
+            {% if articles %}
+                {% for article in articles_page.object_list %}
+                    <!-- Blog entry -->
+                    <div class="w3-card-4 w3-margin w3-white">
+                        <img src="{{ article.icon }}" alt="{{ article.icon_alt }}" style="width:100%">
+                        <div class="w3-container">
+                            <h3><strong>{{ article.title }}</strong></h3>
+                            <h5>{% if article.title_description %}{{ article.title_description }},{% else %}
+                                Created{% endif %} <span
+                                    class="w3-opacity">{{ article.date.strftime("%B %d, %Y") }}</span></h5>
                         </div>
-                        <div class="w3-col m4 w3-hide-small">
-                            <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span
-                                    class="w3-tag">0</span></span></p>
+
+                        <div class="w3-container">
+                            <p>{{ article.summary }}</p>
+                            <div class="w3-row">
+                                <div class="w3-col m8 s12">
+                                    <p>
+                                        <a href="{{ SITE_URL }}/{{ article.url }}">
+                                            <button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE
+                                                »</b>
+                                            </button>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="w3-col m4 w3-hide-small">
+                                    <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span
+                                            class="w3-tag">0</span></span></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <hr>
-
-            <!-- Blog entry -->
-            <div class="w3-card-4 w3-margin w3-white">
-                <img src="/images/bridge.webp" alt="Norway" style="width:100%">
-                <div class="w3-container">
-                    <h3><b>BLOG ENTRY</b></h3>
-                    <h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
-                </div>
-
-                <div class="w3-container">
-                    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem
-                        euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed
-                        ultricies mi non congue ullam corper. Praesent tincidunt sed
-                        tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam
-                        non fringilla.</p>
-                    <div class="w3-row">
-                        <div class="w3-col m8 s12">
-                            <p>
-                                <button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b>
-                                </button>
-                            </p>
-                        </div>
-                        <div class="w3-col m4 w3-hide-small">
-                            <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span
-                                    class="w3-badge">2</span></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <hr>
+                {% endfor %}
+            {% else %}
+                <p class="w3-card-4 w3-margin w3-white">This site currently has no content.</p>
+            {% endif %}
             <!-- END BLOG ENTRIES -->
         </div>
 
@@ -85,26 +62,17 @@
             </div>
             <hr>
 
-            <!-- Labels / categories -->
+            <!-- categories -->
             <div class="w3-card w3-margin">
                 <div class="w3-container w3-padding">
-                    <h4>categories</h4>
+                    <h4><a href="{{ SITEURL }}/categories.html">categories</a></h4>
                 </div>
                 <div class="w3-container w3-white">
-                    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span
-                            class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span
-                            class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+                    <p>
+                        {% for cat, null in categories|sort %}
+                            <span class="w3-tag {% if cat == category %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
+                                    href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></span>
+                        {% endfor %}
                     </p>
                 </div>
             </div>
@@ -113,23 +81,14 @@
             <!-- Labels / tags -->
             <div class="w3-card w3-margin">
                 <div class="w3-container w3-padding">
-                    <h4>tags</h4>
+                    <h4><a href="{{ SITEURL }}/tags.html">tags</a></h4>
                 </div>
                 <div class="w3-container w3-white">
-                    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span
-                            class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span
-                            class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
-                        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span
-                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+                    <p>
+                        {% for tag, null in tags|sort %}
+                            <span class="w3-tag w3-light-grey w3-margin-bottom"><a
+                                    href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></span>
+                        {% endfor %}
                     </p>
                 </div>
             </div>
@@ -162,6 +121,15 @@
                         <p>
                             {% if FEED_ALL_ATOM %}
                                 <a class="w3-tag w3-light-grey w3-margin-bottom" href="{{ FEED_DOMAIN }}/
+
+
+
+
+
+
+
+
+
                                         {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"><i
                                         class="fa-solid fa-atom"></i></a>
                             {% endif %}

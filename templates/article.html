@@ -1,17 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ article.title }}{% endblock %}
+{% block title %}{{ SITENAME }} &ndash; {{ article.title | striptags }}{% endblock %}
+{% block head_meta %}
+    {% if article.summary %}
+        <meta name="description" content="{{ article.summary | striptags | safe }}"/>
+    {% endif %}
+{% endblock %}
 
 {% block header %}
-    <h1><b>{{ article.title }}<b></h1>
+    <h1><strong><a href="{{ SITEURL }}/">{{ SITENAME }}</a></strong></h1>
 {% endblock %}
 
 {% block content %}
-<p><b>TODO</b>: figure out how to do this</p>
-{% endblock %}
+    <article class="w3-card-4 w3-margin w3-white">
+        <header class="w3-container w3-center w3-padding-32">
+            <h1><strong>{{ article.title }}</strong></h1>
+        </header>
 
-{% block footer %}
-  <p><b>TODO</b>: figure how to get this to work</p>
-  <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
-  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
+        <div class="w3-container">
+            <img src="{{ article.icon }}" alt="{{ article.icon_alt }}" style="width:100%">
+            <div class="w3-container">
+                <h5>{% if article.title_description %}{{ article.title_description }},{% else %}Created{% endif %} <span
+                        class="w3-opacity">{{ article.date.strftime("%B %d, %Y") }}</span></h5>
+            </div>
+
+            <div class="w3-container">
+                <p>{{ article.content }}</p>
+            </div>
+        </div>
+    </article>
 {% endblock %}
