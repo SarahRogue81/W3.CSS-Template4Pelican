@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1><a href="{{ SITEURL }}/"><strong>{{ SITENAME }}</strong></a></h1>
+{% endblock %}
+
+{% block content %}
+<h2>Categories on {{ SITENAME }}</h2>
+
+<div class="w3-container w3-white">
+    <p>
+        {% for cat, null in categories|sort %}
+        <span class="w3-tag w3-light-grey w3-margin-bottom"><a
+                href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a> ({{ categories|count }})</span>
+        {% endfor %}
+    </p>
+</div>
+{% endblock %}
