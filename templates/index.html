@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1><strong>{{ SITENAME }}</strong></h1>
-    <p>{{ SITESUBTITLE }}</p>
+    <h1><a href="{{ SITEURL }}/"><strong>{{ SITENAME }}</strong></a></h1>
+    {% block sitesubtitle %}<p>{{ SITESUBTITLE }}</p>{% endblock %}
 {% endblock %}
 
 {% block content %}
