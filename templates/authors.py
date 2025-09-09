@@ -1,0 +1,22 @@
+from docutils.nodes import authors
+
+{% extends 'base.html' %}
+
+{% block title %}authors - {{ SITENAME }}{% endblock %}
+
+{% block header %}
+<h1><a href="{{ SITEURL }}/"><strong>{{ SITENAME }}</strong></a></h1>
+{% endblock %}
+
+{% block content %}
+<h2>authors on {{ SITENAME }}</h2>
+
+<div class="w3-container w3-white">
+    <p>
+        {% for author, articles in authors|sort %}
+        <span class="w3-tag w3-light-grey w3-margin-bottom"><a
+                href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a> ({{ articles|count }})</span>
+        {% endfor %}
+    </p>
+</div>
+{% endblock %}

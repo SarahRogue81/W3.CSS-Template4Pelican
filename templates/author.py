@@ -1,0 +1,7 @@
+from docutils.nodes import author
+
+{% extends 'index.html' %}
+
+{% block title %}{{ author }} - {{ SITENAME }}{% endblock %}
+
+{% block sitesubtitle %}{{ author }} &mdash; author{% endblock %}
