@@ -64,37 +64,28 @@
         </div>
         <hr>
 
-        <!-- categories -->
+        <!-- social media -->
+        {% if SOCIAL or FEED_ALL_ATOM %}
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
-                <h4><a href="{{ SITEURL }}/categories.html">categories</a></h4>
+                <h4>{{ SOCIAL_WIDGET_NAME | default('social') }}</h4>
             </div>
             <div class="w3-container w3-white">
                 <p>
-                    {% for cat, null in categories|sort %}
-                    <span class="w3-tag {% if cat == category %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
-                            href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></span>
-                    {% endfor %}
-                </p>
-            </div>
-        </div>
-        <hr>
+                    {% if FEED_ALL_ATOM %}
+                    <a class="w3-tag w3-light-grey w3-margin-bottom"
+                       href="{{ FEED_DOMAIN }}/\{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"><i
+                            class="fa-solid fa-atom"></i></a>
+                    {% endif %}
 
-        <!-- Labels / tags -->
-        <div class="w3-card w3-margin">
-            <div class="w3-container w3-padding">
-                <h4><a href="{{ SITEURL }}/tags.html">tags</a></h4>
-            </div>
-            <div class="w3-container w3-white">
-                <p>
-                    {% for tag, null in tags|sort %}
-                    <span class="w3-tag w3-light-grey w3-margin-bottom"><a
-                            href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></span>
+                    {% for fontawesome, link in SOCIAL %}
+                    <a class="w3-tag w3-light-grey w3-margin-bottom" href="{{ link }}"><i
+                            class="{{ fontawesome }}"></i></a>
                     {% endfor %}
                 </p>
             </div>
         </div>
-        <hr>
+        {% endif %}
 
         <!-- links -->
         {% if LINKS %}
@@ -113,37 +104,53 @@
         <hr>
         {% endif %}
 
-        <!-- social media -->
-        {% if SOCIAL or FEED_ALL_ATOM %}
+        <!-- categories -->
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
-                <h4>{{ SOCIAL_WIDGET_NAME | default('social') }}</h4>
+                <h4><a href="{{ SITEURL }}/categories.html">categories</a></h4>
             </div>
             <div class="w3-container w3-white">
                 <p>
-                    {% if FEED_ALL_ATOM %}
-                    <a class="w3-tag w3-light-grey w3-margin-bottom" href="{{ FEED_DOMAIN }}/
-
-
-
-
-
-
-
-
-
-                                        {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"><i
-                            class="fa-solid fa-atom"></i></a>
-                    {% endif %}
-
-                    {% for fontawesome, link in SOCIAL %}
-                    <a class="w3-tag w3-light-grey w3-margin-bottom" href="{{ link }}"><i
-                            class="{{ fontawesome }}"></i></a>
+                    {% for cat, null in categories|sort %}
+                    <span class="w3-tag {% if cat == category %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
+                            href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></span>
                     {% endfor %}
                 </p>
             </div>
         </div>
-        {% endif %}
+        <hr>
+
+        <!-- tags -->
+        <div class="w3-card w3-margin">
+            <div class="w3-container w3-padding">
+                <h4><a href="{{ SITEURL }}/tags.html">tags</a></h4>
+            </div>
+            <div class="w3-container w3-white">
+                <p>
+                    {% for tag_name, null in tags|sort %}
+                    <span class="w3-tag {% if tag_name == tag %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
+                            href="{{ SITEURL }}/{{ tag_name.url }}">{{ tag_name }}</a></span>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+        <hr>
+
+        <!-- authors -->
+        <div class="w3-card w3-margin">
+            <div class="w3-container w3-padding">
+                <h4><a href="{{ SITEURL }}/authors.html">authors</a></h4>
+            </div>
+            <div class="w3-container w3-white">
+                <p>
+                    {% for author_name, null in authors|sort %}
+                    <span class="w3-tag {% if author_name == author %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
+                            href="{{ SITEURL }}/{{ author_name.url }}">{{ author_name }}</a></span>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+        <hr>
 
         <!-- END Introduction Menu -->
     </div>
