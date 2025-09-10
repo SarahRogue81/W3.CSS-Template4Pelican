@@ -18,6 +18,7 @@
                 {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
               type="application/atom+xml" rel="alternate" title="{{ SITENAME|striptags }} Atom Feed"/>
     {% endif %}
+    {% block head_link %}{% endblock %}
     {% block stylesheets %}{% endblock %}
     {% block scripts %}
     {% endblock %}

@@ -28,16 +28,15 @@
                 <div class="w3-row">
                     <div class="w3-col m8 s12">
                         <p>
-                            <a href="{{ SITE_URL }}/{{ article.url }}">
-                                <button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE
-                                    »</b>
+                            <a href="{{ SITEURL }}/{{ article.url }}">
+                                <button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b>
                                 </button>
                             </a>
                         </p>
                     </div>
                     {% if DISQUS_SITENAME %}
                     <div class="w3-col m4 w3-hide-small">
-                        <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span
+                        <p><span class="w3-padding-large w3-right"><b>Comments &nbsp;</b> <span
                                 class="w3-tag">0</span></span></p>
                     </div>
                     {% endif %}
@@ -68,20 +67,22 @@
         {% if SOCIAL or FEED_ALL_ATOM %}
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
-                <h4>{{ SOCIAL_WIDGET_NAME | default('social') }}</h4>
+                <h4>
+                    {{ SOCIAL_WIDGET_NAME | default('social') }}
+                </h4>
             </div>
             <div class="w3-container w3-white">
                 <p>
-                    {% if FEED_ALL_ATOM %}
-                    <a class="w3-tag w3-light-grey w3-margin-bottom"
-                       href="{{ FEED_DOMAIN }}/\{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"><i
-                            class="fa-solid fa-atom"></i></a>
-                    {% endif %}
-
                     {% for fontawesome, link in SOCIAL %}
                     <a class="w3-tag w3-light-grey w3-margin-bottom" href="{{ link }}"><i
                             class="{{ fontawesome }}"></i></a>
                     {% endfor %}
+
+                    {% if FEED_ALL_ATOM %}
+                    <a class="w3-tag w3-light-grey w3-margin-bottom w3-right"
+                       href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"><i
+                            class="fa-solid fa-square-rss w3-text-orange"></i></a>
+                    {% endif %}
                 </p>
             </div>
         </div>
@@ -107,13 +108,21 @@
         <!-- categories -->
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
-                <h4><a href="{{ SITEURL }}/categories.html">categories</a></h4>
+                <h4>
+                    <a href="{{ SITEURL }}/categories.html">categories</a>
+                </h4>
             </div>
             <div class="w3-container w3-white">
                 <p>
                     {% for cat, null in categories|sort %}
                     <span class="w3-tag {% if cat == category %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
                             href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></span>
+
+                    {% if CATEGORY_FEED_ATOM and cat == category %}
+                    <a class="w3-tag w3-light-grey w3-margin-bottom"
+                       href="{{ FEED_DOMAIN }}/{% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=cat.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=cat.slug) }}{% endif %}"><i
+                            class="fa-solid fa-square-rss w3-text-orange"></i></a>
+                    {% endif %}
                     {% endfor %}
                 </p>
             </div>
@@ -146,6 +155,12 @@
                     {% for author_name, null in authors|sort %}
                     <span class="w3-tag {% if author_name == author %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
                             href="{{ SITEURL }}/{{ author_name.url }}">{{ author_name }}</a></span>
+
+                    {% if AUTHOR_FEED_ATOM and author_name == author %}
+                    <a class="w3-tag w3-light-grey w3-margin-bottom"
+                       href="{{ FEED_DOMAIN }}/{% if AUTHOR_FEED_ATOM_URL%}{{ AUTHOR_FEED_ATOM_URL.format(slug=author.slug) }}{% else %}{{ AUTHOR_FEED_ATOM.format(slug=author.slug) }}{% endif %}"><i
+                            class="fa-solid fa-square-rss w3-text-orange"></i></a>
+                    {% endif %}
                     {% endfor %}
                 </p>
             </div>
@@ -160,6 +175,6 @@
 {% endblock %}
 
 {% block footer %}
-<button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
-<button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
+<button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
+<button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
 {% endblock %}
