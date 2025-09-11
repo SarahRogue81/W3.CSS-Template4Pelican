@@ -14,12 +14,22 @@
           rel="stylesheet"/>
     <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}" rel="stylesheet"/>
     {% if FEED_ALL_ATOM %}
-        <link href="{{ FEED_DOMAIN }}/
-                {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
-              type="application/atom+xml" rel="alternate" title="{{ SITENAME|striptags }} Atom Feed"/>
+    <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
+          type="application/atom+xml" rel="alternate" title="{{ SITENAME|striptags }} Atom Feed"/>
     {% endif %}
     {% block head_link %}{% endblock %}
     {% block stylesheets %}{% endblock %}
+    {% if GOOGLE_ANALYTICS %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '{{ GOOGLE_ANALYTICS }}');
+    </script>
+    {% endif %}
     {% block scripts %}
     {% endblock %}
 </head>
