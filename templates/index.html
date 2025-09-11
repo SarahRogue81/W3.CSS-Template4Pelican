@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1><a href="{{ SITEURL }}/"><strong>{{ SITENAME }}</strong></a></h1>
+<h1><strong>{{ SITENAME }}</strong></h1>
 {% block sitesubtitle %}<p>{{ SITESUBTITLE }}</p>{% endblock %}
 {% endblock %}
 
@@ -21,7 +21,8 @@
         {% for article in articles_page.object_list %}
         <!-- Blog entry -->
         <div class="w3-card-4 w3-margin w3-white">
-            <img class="article-icon" src="{{ SITEURL}}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}">
+            <img src="{{ SITEURL}}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}"
+                 class="article-icon">
             <div class="w3-container">
                 <h3><strong>{{ article.title }}</strong></h3>
                 <h5>{% if article.title_description %}{{ article.title_description }},{% else %}
@@ -35,7 +36,7 @@
                     <div class="w3-col m8 s12">
                         <p>
                             <a href="{{ SITEURL }}/{{ article.url }}">
-                                <button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b>
+                                <button class="w3-button w3-padding-large w3-white w3-border"><strong>READ MORE &raquo;</strong>
                                 </button>
                             </a>
                         </p>
@@ -43,7 +44,7 @@
                     {% if DISQUS_SHORTNAME %}
                     <div class="w3-col m4 w3-hide-small">
                         <p><strong><a class="w3-padding-large w3-right"
-                                href="{{ SITEURL}}/{{ article.url }}#disqus_thread">0</a></strong></p>
+                                      href="{{ SITEURL}}/{{ article.url }}#disqus_thread">0</a></strong></p>
                     </div>
                     {% endif %}
                 </div>
@@ -63,7 +64,7 @@
         <div class="w3-card w3-margin w3-margin-top">
             <img src="{{ AVATAR_IMAGE }}" style="width:100%" alt="{{ AUTHOR }}">
             <div class="w3-container w3-white">
-                <h4><b>{{ AUTHOR }}</b></h4>
+                <h4><strong>{{ AUTHOR }}</strong></h4>
                 <p>{{ AVATAR_MESSAGE }}</p>
             </div>
         </div>
@@ -74,7 +75,7 @@
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
                 <h4>
-                    {{ SOCIAL_WIDGET_NAME | default('social') }}
+                    {{ SOCIAL_CARD_NAME | default('social') }}
                 </h4>
             </div>
             <div class="w3-container w3-white">
@@ -181,6 +182,13 @@
 {% endblock %}
 
 {% block footer %}
-<button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
-<button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
+<div class="w3-row">
+    <div class="w3-threequarter w3-container">
+        <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
+        <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
+    </div>
+    <div class="w3-quarter w3-container w3-right-align">
+        <button class="w3-button w3-black w3-padding-large w3-margin-bottom"><a href="{{ SITEURL}}/">🏠 Home</a></button>
+    </div>
+</div>
 {% endblock %}

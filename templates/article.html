@@ -14,22 +14,15 @@
 {% endif %}
 {% endblock %}
 
-{% block header %}
-<h1><strong><a href="{{ SITEURL }}/">{{ SITENAME }}</a></strong></h1>
-{% endblock %}
-
 {% block content %}
 <article class="w3-card-4 w3-margin w3-white">
     <header class="w3-container w3-center w3-padding-32">
         <h1><strong>{{ article.title }}</strong></h1>
-        {% if TWITTER_USERNAME %}
-        <a rel="nofollow" href="https://twitter.com/share" class="w3-tag w3-grey" data-count="horizontal"
-           data-via="{{TWITTER_USERNAME}}">Tweet</a>
-        {% endif %}
     </header>
 
     <div class="w3-container">
-        <img class="article-icon" src="{{ SITEURL}}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}">
+        <img class="article-icon" src="{{ SITEURL}}{{ article.imagesdir }}/{{ article.icon }}"
+             alt="{{ article.icon_alt }}">
         <div class="w3-container">
             <h5>{% if article.title_description %}{{ article.title_description }},{% else %}Created{% endif %} <span
                     class="w3-opacity">{{ article.date.strftime("%B %d, %Y") }}</span></h5>
@@ -63,4 +56,24 @@
         {% endif %}
     </div>
 </article>
+{% endblock %}
+
+{% block footer %}
+<nav class="w3-row">
+    <div class="w3-third w3-container">
+        <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
+        <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
+    </div>
+    <div class="w3-third w3-container w3-center">
+        {% if TWITTER_USERNAME %}
+        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
+            <a rel="nofollow" href="https://twitter.com/share" data-count="horizontal" data-via="{{TWITTER_USERNAME}}"><i
+                    class="fa-brands fa-twitter w3-text-blue"></i> Tweet</a>
+            {% endif %}
+        </button>
+    </div>
+    <div class="w3-third w3-container w3-right-align">
+        <button class="w3-button w3-black w3-padding-large w3-margin-bottom"><a href="{{ SITEURL}}/">🏠 Home</a></button>
+    </div>
+</nav>
 {% endblock %}
