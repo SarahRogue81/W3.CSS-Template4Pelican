@@ -5,6 +5,12 @@
 {% block sitesubtitle %}<p>{{ SITESUBTITLE }}</p>{% endblock %}
 {% endblock %}
 
+{% block scripts %}
+{% if DISQUS_SHORTNAME %}
+<script id="dsq-count-scr" src="//{{ DISQUS_SHORTNAME }}.disqus.com/count.js" async></script>
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <!-- Grid -->
 <div class="w3-row">
@@ -15,7 +21,7 @@
         {% for article in articles_page.object_list %}
         <!-- Blog entry -->
         <div class="w3-card-4 w3-margin w3-white">
-            <img src="{{ article.icon }}" alt="{{ article.icon_alt }}" style="width:100%">
+            <img class="article-icon" src="{{ SITEURL}}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}">
             <div class="w3-container">
                 <h3><strong>{{ article.title }}</strong></h3>
                 <h5>{% if article.title_description %}{{ article.title_description }},{% else %}
@@ -34,10 +40,10 @@
                             </a>
                         </p>
                     </div>
-                    {% if DISQUS_SITENAME %}
+                    {% if DISQUS_SHORTNAME %}
                     <div class="w3-col m4 w3-hide-small">
-                        <p><span class="w3-padding-large w3-right"><b>Comments &nbsp;</b> <span
-                                class="w3-tag">0</span></span></p>
+                        <p><strong><a class="w3-padding-large w3-right"
+                                href="{{ SITEURL}}/{{ article.url }}#disqus_thread">0</a></strong></p>
                     </div>
                     {% endif %}
                 </div>
