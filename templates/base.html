@@ -3,7 +3,7 @@
 <head>
     <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
     <meta charset="utf-8">
-    <meta name="robots" content="{{ ROBOTS_CONTENT | dafault('noindex, nofollow' }}"
+    <meta name="robots" content="{{ ROBOTS_CONTENT | default('noindex, nofollow') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block head_meta %}{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
