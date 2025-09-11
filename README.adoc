@@ -1,3 +1,75 @@
 = W3.CSS Template for Pelican
 
-Template for Pelican based on W3.CSS. The actual template is a https://www.w3schools.com/w3css/w3css_templates.asp[W3Schools Blog template].
+a template for Pelican based on W3.CSS. the actual template is a https://www.w3schools.com/w3css/w3css_templates.asp[W3Schools Blog template]
+
+== why?
+
+https://www.w3schools.com/w3css/default.asp[W3.CSS] uses Material Design and offers a lightweight alternative to Bootstrap
+
+the entire https://w3schools.com/ website uses W3.CSS for the UI
+
+== Pelican config variables
+
+the standard Pelican config variables are supported:
+
+    * ARTICLE_SAVE_AS
+    * ARTICLE_URL
+    * AUTHOR
+    * AUTHOR_FEED_ATOM
+    * AUTHOR_FEED_ATOM_URL
+    * CATEGORY_FEED_ATOM
+    * CATEGORY_FEED_ATOM_URL
+    * FEED_ALL_ATOM
+    * FEED_ALL_ATOM_URL
+    * FEED_DOMAIN
+    * SITENAME
+    * SITEURL
+
+the following https://github.com/getpelican/pelican/tree/main/pelican/themes/notmyidea/[`notmyidea`] config variables are supported:
+
+    * DISQUS_SHORTNAME
+    * GOOGLE_ANALYTICS
+    * LINKS
+    * SOCIAL
+
+the https://www.w3schools.com/w3css/w3css_templates.asp[W3 Blog Template] part of this theme uses the following config variables:
+
+    * AVATAR_IMAGE
+    * AVATAR_MESSAGE
+    * CURRENT_YEAR
+    * LICENSE
+    * ROBOTS_CONTENT
+    * SITESUBTITLE
+    * SOCIAL_WIDGET_NAME
+
+my https://github.com/SarahRogue81/Pelican-Website/blob/main/pelicanconf.py[`pelicanconf.py`] and https://github.com/SarahRogue81/Pelican-Website/blob/main/publishconf.py[`publishconf.py`] files can be used to get a feel for how to use this
+
+or
+
+the https://github.com/SarahRogue81/W3.CSS-Template4Pelican[W3.CSS-Template4Pelican] theme itself can be used to figure it all out
+
+== Pelican pagination
+
+this theme does support Pelican pagination config variables
+
+== search engine optimization (SEO)
+
+summaries are listed as descriptions and ROBOTS_CONTENT can be set to index and follow
+
+adding a `robots.txt` file is a good idea as well
+
+be sure and install the https://github.com/pelican-plugins/sitemap/[sitemap] plugin and configure accordingly
+
+== installation
+
+issue the following command to install:
+
+```
+pelican-themes -i path/W3.CSS-Template4Pelican
+```
+
+and then, in `pwlicanconf.py`
+
+```
+THEME = 'W3.CSS-Template4Pelican'
+```
