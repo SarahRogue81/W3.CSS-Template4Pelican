@@ -4,12 +4,34 @@
 
 {% block head_meta %}
 <meta name="description" content="{{ article.summary | striptags | safe }}"/>
+<meta name="twitter:card" content="summary"/>
+{% if TWITTER_USERNAME %}
+<meta name="twitter:site" content="@{{ TWITTER_USERNAME }}"/>
+{% endif %}
+{% if article.twitter_username %}
+<meta name="twitter:creator" content="@{{ article.twitter_username }}"/>
+{% elif TWITTER_USERNAME %}
+<meta name="twitter:creator" content="@{{ TWITTER_USERNAME }}"/>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}
-{% if TWITTER_USERNAME %}
-<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
-{% endif %}
+<script>window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function (f) {
+        t._e.push(f);
+    };
+
+    return t;
+}(document, "script", "twitter-wjs"));</script>
 {% endblock %}
 
 {% block content %}
@@ -63,12 +85,9 @@
         <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
     </div>
     <div class="w3-third w3-container w3-center">
-        {% if TWITTER_USERNAME %}
-        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">
-            <a rel="nofollow" href="https://twitter.com/share" data-count="horizontal" data-via="{{TWITTER_USERNAME}}"><i
-                    class="fa-brands fa-twitter w3-text-blue"></i> Tweet</a>
-            {% endif %}
-        </button>
+        {% if SITEURL != "" %}
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large">Tweet</a>
+        {% endif %}
     </div>
     <div class="w3-third w3-container w3-right-align">
         <button class="w3-button w3-black w3-padding-large w3-margin-bottom"><a href="{{ SITEURL}}/">🏠 Home</a></button>
