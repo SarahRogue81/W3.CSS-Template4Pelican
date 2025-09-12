@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block head_meta %}
+{% if META_DESCRIPTION %}
+<meta name="description" content="{{ META_DESCRIPTION }}"/>
+{% endif %}
+{% endblock %}
+
 {% block header %}
 <h1><strong>{{ SITENAME }}</strong></h1>
 {% block sitesubtitle %}<p>{{ SITESUBTITLE }}</p>{% endblock %}
