@@ -123,6 +123,7 @@
         {% endif %}
 
         <!-- categories -->
+        {% if not HIDE_CATEGORIES %}
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
                 <h4>
@@ -145,8 +146,10 @@
             </div>
         </div>
         <hr>
+        {% endif %}
 
         <!-- tags -->
+        {% if not HIDE_TAGS %}
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
                 <h4><a href="{{ SITEURL }}/tags.html">tags</a></h4>
@@ -161,8 +164,10 @@
             </div>
         </div>
         <hr>
+        {% endif %}
 
         <!-- authors -->
+        {% if not HIDE_AUTHORS %}
         <div class="w3-card w3-margin">
             <div class="w3-container w3-padding">
                 <h4><a href="{{ SITEURL }}/authors.html">authors</a></h4>
@@ -183,6 +188,7 @@
             </div>
         </div>
         <hr>
+        {% endif %}
 
         <!-- END Introduction Menu -->
     </div>
