@@ -4,10 +4,6 @@
 
 {% block head_meta %}
 <meta name="description" content="{{ article.summary | striptags | safe }}"/>
-<meta name="twitter:card" content="summary"/>
-{% if TWITTER_USERNAME %}
-<meta name="twitter:site" content="@{{ TWITTER_USERNAME }}"/>
-{% endif %}
 {% if article.twitter_username %}
 <meta name="twitter:creator" content="@{{ article.twitter_username }}"/>
 {% elif TWITTER_USERNAME %}
