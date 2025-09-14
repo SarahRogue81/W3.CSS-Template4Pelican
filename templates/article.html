@@ -73,20 +73,3 @@
     </div>
 </article>
 {% endblock %}
-
-{% block footer %}
-<nav class="w3-row">
-    <div class="w3-third w3-container">
-        <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
-        <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
-    </div>
-    <div class="w3-third w3-container w3-center">
-        {% if SITEURL != "" %}
-        <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large">Tweet</a>
-        {% endif %}
-    </div>
-    <div class="w3-third w3-container w3-right-align">
-        <a href="{{ SITEURL}}/"><button class="w3-button w3-black w3-padding-large w3-margin-bottom">🏠 Home</button></a>
-    </div>
-</nav>
-{% endblock %}

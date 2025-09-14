@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content=" TWITTER_CARD_VALUE | default('summary') }}"/>
     {% if TWITTER_USERNAME %}
-    <meta name="twitter:site" content="@{{ TWITTER_USERNAME }}"/>
+        <meta name="twitter:site" content="@{{ TWITTER_USERNAME }}"/>
     {% endif %}
     {% block head_meta %}{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,26 +15,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}" />
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}"/>
     {% if FEED_ALL_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
-          type="application/atom+xml" rel="alternate" title="{{ SITENAME|striptags }} Atom Feed"/>
+        <link href="{{ FEED_DOMAIN }}/
+                {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
+              type="application/atom+xml" rel="alternate" title="{{ SITENAME|striptags }} Atom Feed"/>
     {% endif %}
     {% block head_link %}{% endblock %}
     {% block stylesheets %}{% endblock %}
     {% if FONTAWESOME %}
-    <script src="https://kit.fontawesome.com/{{ FONTAWESOME }}.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/{{ FONTAWESOME }}.js" crossorigin="anonymous"></script>
     {% endif %}
     {% if GOOGLE_ANALYTICS %}
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        gtag('config', '{{ GOOGLE_ANALYTICS }}');
-    </script>
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', '{{ GOOGLE_ANALYTICS }}');
+        </script>
     {% endif %}
     {% block scripts %}
     {% endblock %}
@@ -59,11 +64,27 @@ and is wrapped around the whole page content, except for the footer in this exam
 </div>
 
 <footer class="w3-container w3-dark-grey w3-padding-16 w3-margin-top">
-    {% block footer %}
-    {% endblock %}
-    <p>Copyright {{ CURRENT_YEAR }} {{ AUTHOR }}</p>
-    <p><a href="{{ LICENSE_URL }}">{{ LICENSE }}</a> license</p>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    <nav class="w3-row">
+        <div class="w3-third w3-container">
+            {% if page_name not in ["categories", "tags", "authors"] %}
+            <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
+            <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
+            {% endif %}
+        </div>
+        <div class="w3-third w3-container w3-center">
+            {% if SITEURL != "" %}
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large">Tweet</a>
+            {% endif %}
+        </div>
+        <div class="w3-third w3-container w3-right-align">
+            <a href="{{ SITEURL }}/">
+                <button class="w3-button w3-black w3-padding-large w3-margin-bottom">🏠 Home</button>
+            </a>
+        </div>
+    </nav>
+    Copyright {{ CURRENT_YEAR }} {{ AUTHOR }}<br/>
+    <a href="{{ LICENSE_URL }}">{{ LICENSE }}</a> license<br/>
+    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a><br/>
 </footer>
 </body>
 
