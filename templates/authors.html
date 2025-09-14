@@ -3,18 +3,18 @@
 {% block title %}authors - {{ SITENAME }}{% endblock %}
 
 {% block header %}
-<h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+    <h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
 {% endblock %}
 
 {% block content %}
-<h2>authors on {{ SITENAME }}</h2>
+    <h2>authors on {{ SITENAME }}</h2>
 
-<div class="w3-container w3-white">
-    <p>
-        {% for author, articles in authors|sort %}
-        <span class="w3-tag w3-light-grey w3-margin-bottom"><a
-                href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a> ({{ articles|count }})</span>
-        {% endfor %}
-    </p>
-</div>
+    <div class="w3-container w3-white">
+        <p>
+            {% for author, articles in authors|sort %}
+                <span class="w3-tag w3-light-grey w3-margin-bottom"><a
+                        href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a> ({{ articles|count }})</span>
+            {% endfor %}
+        </p>
+    </div>
 {% endblock %}

@@ -3,18 +3,18 @@
 {% block title %}tags - {{ SITENAME }}{% endblock %}
 
 {% block header %}
-<h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
+    <h1><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
 {% endblock %}
 
 {% block content %}
-<h2>tags on {{ SITENAME }}</h2>
+    <h2>tags on {{ SITENAME }}</h2>
 
-<div class="w3-container w3-white">
-    <p>
-        {% for tag, articles in tags|sort %}
-        <span class="w3-tag w3-light-grey w3-margin-bottom"><a
-                href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</span>
-        {% endfor %}
-    </p>
-</div>
+    <div class="w3-container w3-white">
+        <p>
+            {% for tag, articles in tags|sort %}
+                <span class="w3-tag w3-light-grey w3-margin-bottom"><a
+                        href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</span>
+            {% endfor %}
+        </p>
+    </div>
 {% endblock %}
