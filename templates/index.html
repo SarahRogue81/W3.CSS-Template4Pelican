@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block header %}
-<h1><strong>{{ SITENAME }}</strong></h1>
+<div class="w3-text-bold w3-margin w3-xxlarge">{{ SITENAME }}</div>
 {% block sitesubtitle %}<p>{{ SITESUBTITLE }}</p>{% endblock %}
 {% endblock %}
 
@@ -30,7 +30,7 @@
             <img src="{{ SITEURL}}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}"
                  class="article-icon">
             <div class="w3-container">
-                <h3><strong>{{ article.title }}</strong></h3>
+                <h3>{{ article.title }}</h3>
                 <h5>{% if article.title_description %}{{ article.title_description }},{% else %}
                     Created{% endif %} <span
                             class="w3-opacity">{{ article.date.strftime("%B %d, %Y") }}</span></h5>
@@ -42,15 +42,15 @@
                     <div class="w3-col m8 s12">
                         <p>
                             <a href="{{ SITEURL }}/{{ article.url }}">
-                                <button class="w3-button w3-padding-large w3-white w3-border"><strong>READ MORE &raquo;</strong>
+                                <button class="w3-button w3-padding-large w3-white w3-border">READ MORE &raquo;
                                 </button>
                             </a>
                         </p>
                     </div>
                     {% if DISQUS_SHORTNAME %}
                     <div class="w3-col m4 w3-hide-small">
-                        <p><strong><a class="w3-padding-large w3-right"
-                                      href="{{ SITEURL}}/{{ article.url }}#disqus_thread">0</a></strong></p>
+                        <p class="w3-bold">><a class="w3-padding-large w3-right"
+                                      href="{{ SITEURL}}/{{ article.url }}#disqus_thread">0</a></p>
                     </div>
                     {% endif %}
                 </div>
@@ -70,7 +70,7 @@
         <div class="w3-card w3-margin w3-margin-top">
             <img src="{{ AVATAR_IMAGE }}" style="width:100%" alt="{{ AUTHOR }}">
             <div class="w3-container w3-white">
-                <h4><strong>{{ AUTHOR }}</strong></h4>
+                <h4>{{ AUTHOR }}</h4>
                 <p>{{ AVATAR_MESSAGE }}</p>
             </div>
         </div>
