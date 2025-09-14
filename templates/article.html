@@ -3,50 +3,46 @@
 {% block title %}{{ SITENAME }} &ndash; {{ article.title | striptags }}{% endblock %}
 
 {% block head_meta %}
-<meta name="description" content="{{ article.summary | striptags | safe }}"/>
-{% if article.twitter_username %}
-<meta name="twitter:creator" content="@{{ article.twitter_username }}"/>
-{% elif TWITTER_USERNAME %}
-<meta name="twitter:creator" content="@{{ TWITTER_USERNAME }}"/>
-{% endif %}
-{% endblock %}
-
-{% block scripts %}
-{% if DISQUS_SHORTNAME %}
-<script id="dsq-count-scr" src="//{{ DISQUS_SHORTNAME }}.disqus.com/count.js" async></script>
-{% endif %}
+    <meta name="description" content="{{ article.summary | striptags | safe }}"/>
+    {% if article.twitter_username %}
+        <meta name="twitter:creator" content="@{{ article.twitter_username }}"/>
+    {% elif TWITTER_USERNAME %}
+        <meta name="twitter:creator" content="@{{ TWITTER_USERNAME }}"/>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-<article class="w3-card-4 w3-section w3-white" style="margin-left: 12.5%; width: 75%">
-    <header class="w3-container w3-center w3-padding-32">
-        <h1>{{ article.title }}</h1>
-    </header>
-
-    <div class="w3-container">
-        <img class="article-icon" src="{{ SITEURL}}{{ article.imagesdir }}/{{ article.icon }}"
-             alt="{{ article.icon_alt }}">
-        <div class="w3-container">
-            <h5>{% if article.title_description %}{{ article.title_description }},{% else %}Created{% endif %} <span
-                    class="w3-opacity">{{ article.date.strftime("%B %d, %Y") }}</span></h5>
-        </div>
+    <article class="w3-card-4 w3-section w3-white" style="margin-left: 12.5%; width: 75%">
+        <header class="w3-container w3-center w3-padding-32">
+            <h1>{{ article.title }}</h1>
+        </header>
 
         <div class="w3-container">
-            <p>{{ article.content }}</p>
-        </div>
+            <img class="article-icon" src="{{ SITEURL }}{{ article.imagesdir }}/{{ article.icon }}"
+                 alt="{{ article.icon_alt }}">
+            <div class="w3-container">
+                <h5>{% if article.title_description %}{{ article.title_description }},{% else %}Created{% endif %} <span
+                        class="w3-opacity">{{ article.date.strftime("%B %d, %Y") }}</span></h5>
+            </div>
 
-        {% if DISQUS_SHORTNAME %}
-        <div id="disqus_thread" class="w3-container"></div>
+            <div class="w3-container">
+                <p>{{ article.content }}</p>
+            </div>
+        </div>
+    </article>
+
+    {% if DISQUS_SHORTNAME %}
+        <div id="disqus_thread" class="w3-card-4 w3-padding w3-white" style="margin-left: 12.5%; width: 75%;"></div>
         <script>
             /**
              *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
              *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            /*
+
             var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.page.url = '{{ SITEURL }}/{{ article.url }}';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '{{ article.slug }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
             };
-            */
+
             (function () { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
                 s.src = 'https://{{ DISQUS_SHORTNAME }}.disqus.com/embed.js';
@@ -54,9 +50,8 @@
                 (d.head || d.body).appendChild(s);
             })();
         </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-            Disqus.</a></noscript>
-        {% endif %}
-    </div>
-</article>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments
+            powered by Disqus.</a></noscript>
+    {% endif %}
+
 {% endblock %}
