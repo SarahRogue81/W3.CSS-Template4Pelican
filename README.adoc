@@ -1,6 +1,6 @@
 = W3.CSS Template for Pelican
 
-a template for Pelican based on W3.CSS. the actual template is a https://www.w3schools.com/w3css/w3css_templates.asp[W3Schools Blog template]
+a template for Pelican based on W3.CSS. the actual template is a https://www.w3schools.com/w3css/w3css_templates.asp#:~:text=Blog%20Template[W3Schools Blog template]
 
 == why?
 
