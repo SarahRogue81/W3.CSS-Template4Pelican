@@ -74,24 +74,21 @@
                         </h4>
                     </div>
                     <div class="w3-container w3-white">
-                        <p>
-                            {% for fontawesome, link in SOCIAL %}
-                                <a class="w3-tag w3-light-grey w3-margin-bottom" href="{{ link }}"><i
-                                        class="{{ fontawesome }}"></i></a>
+                            {% for title, link in SOCIAL %}
+                                <a class="w3-tag w3-white w3-margin-bottom" href="{{ link }}">
+                                    <svg class="{{ title }}-icon social-icons" role="img" aria-label="{{ title }} icon">
+                                        <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/{{ title }}.svg"></use>
+                                    </svg>
+                                </a>
                             {% endfor %}
 
                             {% if FEED_ALL_ATOM %}
-                                <a class="w3-tag w3-light-grey w3-margin-bottom w3-right"
-                                   href="{{ FEED_DOMAIN }}/
-
-
-
-
-
-                                           {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"><i
-                                        class="fa-solid fa-square-rss w3-text-orange"></i></a>
+                                <a class="w3-tag w3-white w3-margin-bottom w3-right" href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">
+                                    <svg class="atom-icon social-icons" role="img" aria-label="RSS Feed icon">
+                                        <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/square-rss.svg"></use>
+                                    </svg>
+                                </a>
                             {% endif %}
-                        </p>
                     </div>
                 </div>
             {% endif %}
