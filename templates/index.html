@@ -83,7 +83,7 @@
                             {% endfor %}
 
                             {% if FEED_ALL_ATOM %}
-                                <a class="w3-tag w3-white w3-margin-bottom w3-right" href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">
+                                <a class="w3-tag w3-white w3-margin-bottom" href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">
                                     <svg class="atom-icon social-icons" role="img" aria-label="RSS Feed icon">
                                         <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/square-rss.svg"></use>
                                     </svg>
