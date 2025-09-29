@@ -21,7 +21,7 @@
                 {% for article in articles_page.object_list %}
                     <!-- Blog entry -->
                     <div class="w3-card-4 w3-margin w3-white">
-                        <img src="{{ SITEURL }}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}"
+                        <img fetchpriority=high src="{{ SITEURL }}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}"
                              class="article-icon">
                         <div class="w3-container">
                             <h3>{{ article.title }}</h3>
