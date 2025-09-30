@@ -21,7 +21,7 @@
                 {% for article in articles_page.object_list %}
                     <!-- Blog entry -->
                     <div class="w3-card-4 w3-margin w3-white">
-                        <img fetchpriority="high" loading="lazy" style="width: 256px; height: 256px;"
+                        <img fetchpriority="high" style="width: 256px; height: 256px;"
                              src="{{ SITEURL }}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}"
                              class="article-icon">
                         <div class="w3-container">
@@ -58,7 +58,8 @@
         <div class="w3-col l4">
             <!-- About Card -->
             <div class="w3-card w3-margin w3-margin-top">
-                <img fetchpriority="high" loading="lazy" src="{{ SITEURL }}/images/avatar.webp" style="width:100%" alt="{{ AUTHOR }}">
+                <img fetchpriority="high" src="{{ SITEURL }}/images/avatar.webp" style="width:380px; height:380px;"
+                     alt="{{ AUTHOR }}">
                 <div class="w3-container w3-white">
                     <h4>{{ AUTHOR }}</h4>
                     <p>{{ AVATAR_MESSAGE }}</p>
@@ -85,6 +86,7 @@
 
                         {% if FEED_ALL_ATOM %}
                             <a class="w3-tag w3-white w3-margin-bottom" href="{{ FEED_DOMAIN }}/
+
                                     {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">
                                 <svg class="atom-icon social-icons" role="img" aria-label="RSS Feed icon">
                                     <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/square-rss.svg"></use>
@@ -135,6 +137,7 @@
 
 
 
+
                                                {% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=cat.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=cat.slug) }}{% endif %}"><i
                                             class="fa-solid fa-square-rss w3-text-orange"></i></a>
                                 {% endif %}
@@ -178,6 +181,7 @@
                                 {% if AUTHOR_FEED_ATOM and author_name == author %}
                                     <a class="w3-tag w3-light-grey w3-margin-bottom"
                                        href="{{ FEED_DOMAIN }}/
+
 
 
 
