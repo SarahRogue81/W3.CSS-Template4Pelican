@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block header %}
-    <p class="w3-margin">{{ SITENAME }}</p>
+    <h1 class="w3-margin">{{ SITENAME }}</h1>
     {% block sitesubtitle %}<p>{{ SITESUBTITLE }}</p>{% endblock %}
 {% endblock %}
 
@@ -86,10 +86,9 @@
 
                         {% if FEED_ALL_ATOM %}
                             <a class="w3-tag w3-white w3-margin-bottom" href="{{ FEED_DOMAIN }}/
-
                                     {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">
                                 <svg class="atom-icon social-icons" role="img" aria-label="RSS Feed icon">
-                                    <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/square-rss.svg"></use>
+                                    <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/rss.svg"></use>
                                 </svg>
                             </a>
                         {% endif %}
@@ -131,15 +130,11 @@
                                 {% if CATEGORY_FEED_ATOM and cat == category %}
                                     <a class="w3-tag w3-light-grey w3-margin-bottom"
                                        href="{{ FEED_DOMAIN }}/
-
-
-
-
-
-
-
-                                               {% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=cat.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=cat.slug) }}{% endif %}"><i
-                                            class="fa-solid fa-square-rss w3-text-orange"></i></a>
+                                               {% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=cat.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=cat.slug) }}{% endif %}">
+                                        <svg class="atom-icon social-icons" role="img" aria-label="RSS Feed icon">
+                                            <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/rss.svg"></use>
+                                        </svg>
+                                    </a>
                                 {% endif %}
                             {% endfor %}
                         </p>
@@ -181,13 +176,6 @@
                                 {% if AUTHOR_FEED_ATOM and author_name == author %}
                                     <a class="w3-tag w3-light-grey w3-margin-bottom"
                                        href="{{ FEED_DOMAIN }}/
-
-
-
-
-
-
-
                                                {% if AUTHOR_FEED_ATOM_URL %}{{ AUTHOR_FEED_ATOM_URL.format(slug=author.slug) }}{% else %}{{ AUTHOR_FEED_ATOM.format(slug=author.slug) }}{% endif %}"><i
                                             class="fa-solid fa-square-rss w3-text-orange"></i></a>
                                 {% endif %}
