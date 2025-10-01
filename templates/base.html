@@ -20,7 +20,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="{{ ROBOTS_CONTENT | default('noindex, nofollow') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="twitter:card" content=" TWITTER_CARD_VALUE | default('summary') }}"/>
+    <meta name="twitter:card" content="{{ TWITTER_CARD_VALUE | default('summary') }}"/>
     {% if TWITTER_USERNAME %}
         <meta name="twitter:site" content="@{{ TWITTER_USERNAME }}"/>
     {% endif %}
