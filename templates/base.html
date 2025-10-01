@@ -110,7 +110,7 @@
             font-family: 'Noto Sans Mono', monospace;
         }
     </style>
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/main.css" type="text/css }}">
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/main.css" type="text/css">
 </head>
 
 <body class="w3-light-grey">
@@ -135,9 +135,21 @@ and is wrapped around the whole page content, except for the footer in this exam
     <nav class="w3-row">
         <div class="w3-threequarter w3-container">
             {% if page_name not in ["categories", "tags", "authors"] %}
-                <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous
-                </button>
-                <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
+                {% if articles_previous_page %}
+                    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">
+                        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">&laquo; Previous</button>
+                    </a>
+                {% else %}
+                    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
+                {% endif %}
+
+                {% if articles_next_page %}
+                    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">
+                        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next &raquo;</button>
+                    </a>
+                {% else %}
+                    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
+                {% endif %}
             {% endif %}
         </div>
         <div class="w3-quarter w3-container w3-right-align">
