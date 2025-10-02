@@ -1,194 +1,224 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block head_meta %} {% if META_DESCRIPTION %}
+<meta name="description" content="{{ META_DESCRIPTION }}" />
+{% endif %} {% endblock %} {% block header %}
+<h1 class="w3-margin">{{ SITENAME }}</h1>
+{% block sitesubtitle %}
+<p>{{ SITESUBTITLE }}</p>
+{% endblock %} {% endblock %} {% block content %}
+<!-- Grid -->
+<div class="w3-row">
+  <!-- Blog entries -->
+  <div class="w3-col l8 s12">
+    {% if articles %} {% for article in articles_page.object_list %}
+    <!-- Blog entry -->
+    <div class="w3-card-4 w3-margin w3-white">
+      <img
+        fetchpriority="high"
+        style="width: 256px; height: 256px"
+        src="{{ SITEURL }}{{ article.imagesdir }}/{{ article.icon }}"
+        alt="{{ article.icon_alt }}"
+        class="article-icon"
+      />
+      <div class="w3-container">
+        <h3>{{ article.title }}</h3>
+        <h5>
+          {% if article.title_description %}{{ article.title_description }},{%
+          else %} Created{% endif %}
+          <span class="w3-opacity"
+            >{{ article.date.strftime("%B %d, %Y") }}</span
+          >
+        </h5>
+      </div>
 
-{% block head_meta %}
-    {% if META_DESCRIPTION %}
-        <meta name="description" content="{{ META_DESCRIPTION }}"/>
-    {% endif %}
-{% endblock %}
-
-{% block header %}
-    <h1 class="w3-margin">{{ SITENAME }}</h1>
-    {% block sitesubtitle %}<p>{{ SITESUBTITLE }}</p>{% endblock %}
-{% endblock %}
-
-{% block content %}
-    <!-- Grid -->
-    <div class="w3-row">
-
-        <!-- Blog entries -->
-        <div class="w3-col l8 s12">
-            {% if articles %}
-                {% for article in articles_page.object_list %}
-                    <!-- Blog entry -->
-                    <div class="w3-card-4 w3-margin w3-white">
-                        <img fetchpriority="high" style="width: 256px; height: 256px;"
-                             src="{{ SITEURL }}{{ article.imagesdir }}/{{ article.icon }}" alt="{{ article.icon_alt }}"
-                             class="article-icon">
-                        <div class="w3-container">
-                            <h3>{{ article.title }}</h3>
-                            <h5>{% if article.title_description %}{{ article.title_description }},{% else %}
-                                Created{% endif %} <span
-                                    class="w3-opacity">{{ article.date.strftime("%B %d, %Y") }}</span></h5>
-                        </div>
-
-                        <div class="w3-container">
-                            <p>{{ article.summary }}</p>
-                            <div class="w3-row">
-                                <div class="w3-col m8 s12">
-                                    <p>
-                                        <a href="{{ SITEURL }}/{{ article.url }}">
-                                            <button class="w3-button w3-padding-large w3-white w3-border">READ MORE
-                                                &raquo;
-                                            </button>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                {% endfor %}
-            {% else %}
-                <p class="w3-card-4 w3-margin w3-white" style="padding: 32px;">This site currently has no content.</p>
-            {% endif %}
-            <!-- END BLOG ENTRIES -->
+      <div class="w3-container">
+        <p>{{ article.summary }}</p>
+        <div class="w3-row">
+          <div class="w3-col m8 s12">
+            <p>
+              <a href="{{ SITEURL }}/{{ article.url }}">
+                <button class="w3-button w3-padding-large w3-white w3-border">
+                  READ MORE &raquo;
+                </button>
+              </a>
+            </p>
+          </div>
         </div>
-
-        <!-- Introduction menu -->
-        <div class="w3-col l4">
-            <!-- About Card -->
-            <div class="w3-card w3-margin w3-margin-top">
-                <img fetchpriority="high" src="{{ SITEURL }}/images/avatar.webp" style="width:100%;"
-                     alt="{{ AUTHOR }}">
-                <div class="w3-container w3-white">
-                    <h4>{{ AUTHOR }}</h4>
-                    <p>{{ AVATAR_MESSAGE }}</p>
-                </div>
-            </div>
-            <hr>
-
-            <!-- social media -->
-            {% if SOCIAL or FEED_ALL_ATOM %}
-                <div class="w3-card w3-margin">
-                    <div class="w3-container w3-padding">
-                        <h4>
-                            {{ SOCIAL_CARD_NAME | default('social') }}
-                        </h4>
-                    </div>
-                    <div class="w3-container w3-white">
-                        {% for title, link in SOCIAL %}
-                            <a class="w3-tag w3-white w3-margin-bottom" href="{{ link }}">
-                                <svg class="{{ title }}-icon social-icons" role="img" aria-label="{{ title }} icon">
-                                    <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/{{ title }}.svg"></use>
-                                </svg>
-                            </a>
-                        {% endfor %}
-
-                        {% if FEED_ALL_ATOM %}
-                            <a class="w3-tag w3-white w3-margin-bottom" href="{{ FEED_DOMAIN }}/
-                                    {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}">
-                                <svg class="atom-icon social-icons" role="img" aria-label="RSS Feed icon">
-                                    <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/rss.svg"></use>
-                                </svg>
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-
-            <!-- links -->
-            {% if LINKS %}
-                <div class="w3-card w3-margin">
-                    <div class="w3-container w3-padding">
-                        <h4>{{ LINKS_WIDGET_NAME | default('links') }}</h4>
-                    </div>
-                    <ul class="w3-ul w3-hoverable w3-white">
-                        {% for name, link in LINKS %}
-                            <li class="w3-padding-16">
-                                <a href="{{ link }}">{{ name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <hr>
-            {% endif %}
-
-            <!-- categories -->
-            {% if not HIDE_CATEGORIES %}
-                <div class="w3-card w3-margin">
-                    <div class="w3-container w3-padding">
-                        <h4>
-                            <a href="{{ SITEURL }}/categories.html">categories</a>
-                        </h4>
-                    </div>
-                    <div class="w3-container w3-white">
-                        <p>
-                            {% for cat, null in categories|sort %}
-                                <span class="w3-tag {% if cat == category %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
-                                        href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></span>
-
-                                {% if CATEGORY_FEED_ATOM and cat == category %}
-                                    <a class="w3-tag w3-light-grey w3-margin-bottom"
-                                       href="{{ FEED_DOMAIN }}/
-                                               {% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=cat.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=cat.slug) }}{% endif %}">
-                                        <svg class="atom-icon social-icons" role="img" aria-label="RSS Feed icon">
-                                            <use href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/rss.svg"></use>
-                                        </svg>
-                                    </a>
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                </div>
-                <hr>
-            {% endif %}
-
-            <!-- tags -->
-            {% if not HIDE_TAGS %}
-                <div class="w3-card w3-margin">
-                    <div class="w3-container w3-padding">
-                        <h4><a href="{{ SITEURL }}/tags.html">tags</a></h4>
-                    </div>
-                    <div class="w3-container w3-white">
-                        <p>
-                            {% for tag_name, null in tags|sort %}
-                                <span class="w3-tag {% if tag_name == tag %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
-                                        href="{{ SITEURL }}/{{ tag_name.url }}">{{ tag_name }}</a></span>
-                            {% endfor %}
-                        </p>
-                    </div>
-                </div>
-                <hr>
-            {% endif %}
-
-            <!-- authors -->
-            {% if not HIDE_AUTHORS %}
-                <div class="w3-card w3-margin">
-                    <div class="w3-container w3-padding">
-                        <h4><a href="{{ SITEURL }}/authors.html">authors</a></h4>
-                    </div>
-                    <div class="w3-container w3-white">
-                        <p>
-                            {% for author_name, null in authors|sort %}
-                                <span class="w3-tag {% if author_name == author %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"><a
-                                        href="{{ SITEURL }}/{{ author_name.url }}">{{ author_name }}</a></span>
-
-                                {% if AUTHOR_FEED_ATOM and author_name == author %}
-                                    <a class="w3-tag w3-light-grey w3-margin-bottom"
-                                       href="{{ FEED_DOMAIN }}/
-                                               {% if AUTHOR_FEED_ATOM_URL %}{{ AUTHOR_FEED_ATOM_URL.format(slug=author.slug) }}{% else %}{{ AUTHOR_FEED_ATOM.format(slug=author.slug) }}{% endif %}"><i
-                                            class="fa-solid fa-square-rss w3-text-orange"></i></a>
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                </div>
-                <hr>
-            {% endif %}
-
-            <!-- END Introduction Menu -->
-        </div>
-
-        <!-- END GRID -->
+      </div>
     </div>
+    <hr />
+    {% endfor %} {% else %}
+    <p class="w3-card-4 w3-margin w3-white" style="padding: 32px">
+      This site currently has no content.
+    </p>
+    {% endif %}
+    <!-- END BLOG ENTRIES -->
+  </div>
+
+  <!-- Introduction menu -->
+  <div class="w3-col l4">
+    <!-- About Card -->
+    <div class="w3-card w3-margin w3-margin-top">
+      <img
+        fetchpriority="high"
+        src="{{ SITEURL }}/images/avatar.webp"
+        style="width: 100%"
+        alt="{{ AUTHOR }}"
+      />
+      <div class="w3-container w3-white">
+        <h4>{{ AUTHOR }}</h4>
+        <p>{{ AVATAR_MESSAGE }}</p>
+      </div>
+    </div>
+    <hr />
+
+    <!-- social media -->
+    {% if SOCIAL or FEED_ALL_ATOM %}
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4>{{ SOCIAL_CARD_NAME | default('social') }}</h4>
+      </div>
+      <div class="w3-container w3-white">
+        {% for title, link in SOCIAL %}
+        <a class="w3-tag w3-white w3-margin-bottom" href="{{ link }}">
+          <svg
+            class="{{ title }}-icon social-icons"
+            role="img"
+            aria-label="{{ title }} icon"
+          >
+            <use
+              href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/{{ title }}.svg"
+            ></use>
+          </svg>
+        </a>
+        {% endfor %} {% if FEED_ALL_ATOM %}
+        <a
+          class="w3-tag w3-white w3-margin-bottom"
+          href="{{ FEED_DOMAIN }}/
+                                    {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
+        >
+          <svg
+            class="atom-icon social-icons"
+            role="img"
+            aria-label="RSS Feed icon"
+          >
+            <use
+              href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/rss.svg"
+            ></use>
+          </svg>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- links -->
+    {% if LINKS %}
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4>{{ LINKS_WIDGET_NAME | default('links') }}</h4>
+      </div>
+      <ul class="w3-ul w3-hoverable w3-white">
+        {% for name, link in LINKS %}
+        <li class="w3-padding-16">
+          <a href="{{ link }}">{{ name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <hr />
+    {% endif %}
+
+    <!-- categories -->
+    {% if not HIDE_CATEGORIES %}
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4>
+          <a href="{{ SITEURL }}/categories.html">categories</a>
+        </h4>
+      </div>
+      <div class="w3-container w3-white">
+        <p>
+          {% for cat, null in categories|sort %}
+          <span
+            class="w3-tag {% if cat == category %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"
+            ><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></span
+          >
+
+          {% if CATEGORY_FEED_ATOM and cat == category %}
+          <a
+            class="w3-tag w3-white w3-margin-bottom"
+            href="{{ FEED_DOMAIN }}/{% if CATEGORY_FEED_ATOM_URL %}{{ CATEGORY_FEED_ATOM_URL.format(slug=cat.slug) }}{% else %}{{ CATEGORY_FEED_ATOM.format(slug=cat.slug) }}{% endif %}"
+          >
+            <svg
+              class="atom-icon social-icons"
+              role="img"
+              aria-label="RSS Feed icon"
+            >
+              <use
+                href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/assets/fontawesome/rss.svg"
+              ></use>
+            </svg>
+          </a>
+          {% endif %} {% endfor %}
+        </p>
+      </div>
+    </div>
+    <hr />
+    {% endif %}
+
+    <!-- tags -->
+    {% if not HIDE_TAGS %}
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4><a href="{{ SITEURL }}/tags.html">tags</a></h4>
+      </div>
+      <div class="w3-container w3-white">
+        <p>
+          {% for tag_name, null in tags|sort %}
+          <span
+            class="w3-tag {% if tag_name == tag %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"
+            ><a href="{{ SITEURL }}/{{ tag_name.url }}">{{ tag_name }}</a></span
+          >
+          {% endfor %}
+        </p>
+      </div>
+    </div>
+    <hr />
+    {% endif %}
+
+    <!-- authors -->
+    {% if not HIDE_AUTHORS %}
+    <div class="w3-card w3-margin">
+      <div class="w3-container w3-padding">
+        <h4><a href="{{ SITEURL }}/authors.html">authors</a></h4>
+      </div>
+      <div class="w3-container w3-white">
+        <p>
+          {% for author_name, null in authors|sort %}
+          <span
+            class="w3-tag {% if author_name == author %}w3-black{% else %}w3-light-grey{% endif %} w3-margin-bottom"
+            ><a href="{{ SITEURL }}/{{ author_name.url }}"
+              >{{ author_name }}</a
+            ></span
+          >
+
+          {% if AUTHOR_FEED_ATOM and author_name == author %}
+          <a
+            class="w3-tag w3-light-grey w3-margin-bottom"
+            href="{{ FEED_DOMAIN }}/
+                                               {% if AUTHOR_FEED_ATOM_URL %}{{ AUTHOR_FEED_ATOM_URL.format(slug=author.slug) }}{% else %}{{ AUTHOR_FEED_ATOM.format(slug=author.slug) }}{% endif %}"
+            ><i class="fa-solid fa-square-rss w3-text-orange"></i
+          ></a>
+          {% endif %} {% endfor %}
+        </p>
+      </div>
+    </div>
+    <hr />
+    {% endif %}
+
+    <!-- END Introduction Menu -->
+  </div>
+
+  <!-- END GRID -->
+</div>
 {% endblock %}
