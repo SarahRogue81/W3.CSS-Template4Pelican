@@ -111,6 +111,10 @@
         }
     </style>
     <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/main.css" type="text/css">
+
+    {% if OVERRIDE_CSS %}
+        <link rel="stylesheet" href="{{ SITEURL }}/{{ OVERRIDE_CSS }}" type="text/css">
+    {% endif %}
 </head>
 
 <body class="w3-light-grey">
@@ -159,7 +163,7 @@ and is wrapped around the whole page content, except for the footer in this exam
         </div>
     </nav>
     Copyright {{ CURRENT_YEAR }} {{ AUTHOR }}<br/>
-    <a href="{{ LICENSE_URL }}">{{ LICENSE }}</a> license<br/>
+    <a href="{{ LICENSE_URL | default('https://creativecommons.org/licenses/by/4.0/') }}">{{ LICENSE | default('Attribution 4.0 International') }}</a> license<br/>
     Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a><br/>
 </footer>
 </body>
