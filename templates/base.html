@@ -1,171 +1,225 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <link rel="preconnect" href="https://sarah-rogue.me">
-    <link rel="preconnect" href="https://sarah-rogue.me" crossorigin>
+  <head>
+    <link rel="preconnect" href="https://sarah-rogue.me" />
+    <link rel="preconnect" href="https://sarah-rogue.me" crossorigin />
 
     {% if page_name == 'index' %}
-        <link rel="canonical" href="{{ SITEURL }}/">
+    <link rel="canonical" href="{{ SITEURL }}/" />
     {% elif article %}
-        <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
-    {% elif page  %}
-        <link rel="canonical" href="{{ SITEURL }}/{{ page.url }}">
+    <link rel="canonical" href="{{ SITEURL }}/{{ article.url }}" />
+    {% elif page %}
+    <link rel="canonical" href="{{ SITEURL }}/{{ page.url }}" />
     {% elif category %}
-        <link rel="canonical" href="{{ SITEURL }}/{{ category.url }}">
+    <link rel="canonical" href="{{ SITEURL }}/{{ category.url }}" />
     {% elif tag %}
-        <link rel="canonical" href="{{ SITEURL }}/{{ tag.url }}">
+    <link rel="canonical" href="{{ SITEURL }}/{{ tag.url }}" />
     {% endif %}
 
     <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
-    <meta charset="utf-8">
-    <meta name="robots" content="{{ ROBOTS_CONTENT | default('noindex, nofollow') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="twitter:card" content="{{ TWITTER_CARD_VALUE | default('summary') }}"/>
+    <meta charset="utf-8" />
+    <meta
+      name="robots"
+      content="{{ ROBOTS_CONTENT | default('noindex, nofollow') }}"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="twitter:card"
+      content="{{ TWITTER_CARD_VALUE | default('summary') }}"
+    />
     {% if TWITTER_USERNAME %}
-        <meta name="twitter:site" content="@{{ TWITTER_USERNAME }}"/>
-    {% endif %}
-    {% block head_meta %}{% endblock %}
-    {% if FEED_ALL_ATOM %}
-        <link href="{{ FEED_DOMAIN }}/
+    <meta name="twitter:site" content="@{{ TWITTER_USERNAME }}" />
+    {% endif %} {% block head_meta %}{% endblock %} {% if FEED_ALL_ATOM %}
+    <link
+      href="{{ FEED_DOMAIN }}/
             {% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
-              type="application/atom+xml" rel="alternate" title="{{ SITENAME|striptags }} Atom Feed"/>
+      type="application/atom+xml"
+      rel="alternate"
+      title="{{ SITENAME|striptags }} Atom Feed"
+    />
     {% endif %}
 
     <!-- Basic Favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Web App Manifest for Android/Chrome -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- Theme Color for Browsers -->
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#ffffff" />
 
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/w3.css" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/w3.css"
+      type="text/css"
+    />
     <style>
-        @font-face {
-            font-family: 'Noto Sans Regular';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/theme/assets/google-fonts/NotoSans-Regular.woff2') format('woff2');
-        }
+      @font-face {
+        font-family: "Noto Sans Regular";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/theme/assets/google-fonts/NotoSans-Regular.woff2")
+          format("woff2");
+      }
 
-        @font-face {
-            font-family: 'Noto Sans Bold';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/theme/assets/google-fonts/NotoSans-Bold.woff2') format('woff2');
-        }
+      @font-face {
+        font-family: "Noto Sans Bold";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/theme/assets/google-fonts/NotoSans-Bold.woff2")
+          format("woff2");
+      }
 
-        @font-face {
-            font-family: 'Noto Sans Italic';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/theme/assets/google-fonts/NotoSans-Italic.woff2') format('woff2');
-        }
+      @font-face {
+        font-family: "Noto Sans Italic";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/theme/assets/google-fonts/NotoSans-Italic.woff2")
+          format("woff2");
+      }
 
-        @font-face {
-            font-family: 'Noto Sans Bold Italic';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/theme/assets/google-fonts/NotoSans-BoldItalic.woff2') format('woff2');
-        }
+      @font-face {
+        font-family: "Noto Sans Bold Italic";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/theme/assets/google-fonts/NotoSans-BoldItalic.woff2")
+          format("woff2");
+      }
 
-        @font-face {
-            font-family: 'Noto Sans Mono';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/theme/assets/google-fonts/NotoSansMono-Regular.woff2') format('woff2');
-        }
+      @font-face {
+        font-family: "Noto Sans Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/theme/assets/google-fonts/NotoSansMono-Regular.woff2")
+          format("woff2");
+      }
 
-        body {
-            font-family: 'Noto Sans Regular', sans-serif;
-        }
+      body {
+        font-family: "Noto Sans Regular", sans-serif;
+      }
 
-        h1, h2, h3, h4, h5 {
-            font-family: 'Noto Sans Bold', sans-serif;
-        }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Noto Sans Bold", sans-serif;
+      }
 
-        b, strong {
-            font-family: 'Noto Sans Bold', sans-serif;
-        }
+      b,
+      strong {
+        font-family: "Noto Sans Bold", sans-serif;
+      }
 
-        i, em {
-            font-family: 'Noto Sans Italic', sans-serif;
-        }
+      i,
+      em {
+        font-family: "Noto Sans Italic", sans-serif;
+      }
 
-        b i, i b, strong em, em strong {
-            font-family: 'Noto Sans Bold Italic', sans-serif;
-        }
+      b i,
+      i b,
+      strong em,
+      em strong {
+        font-family: "Noto Sans Bold Italic", sans-serif;
+      }
 
-        pre, code {
-            font-family: 'Noto Sans Mono', monospace;
-        }
+      pre,
+      code {
+        font-family: "Noto Sans Mono", monospace;
+      }
     </style>
-    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/main.css" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/{{ CSS_FILE }}"
+      type="text/css"
+    />
 
     {% if OVERRIDE_CSS %}
-        <link rel="stylesheet" href="{{ SITEURL }}/{{ OVERRIDE_CSS }}" type="text/css">
+    <link
+      rel="stylesheet"
+      href="{{ SITEURL }}/{{ OVERRIDE_CSS }}"
+      type="text/css"
+    />
     {% endif %}
-</head>
+  </head>
 
-<body class="w3-light-grey">
-
-<!-- w3-content defines a container for fixed size centered content,
+  <body class="w3-light-grey">
+    <!-- w3-content defines a container for fixed size centered content,
 and is wrapped around the whole page content, except for the footer in this example -->
-<div class="w3-content" style="max-width:1400px">
+    <div class="w3-content" style="max-width: 1400px">
+      <!-- Header -->
+      <header class="w3-container w3-center w3-padding-32">
+        {% block header %} {% endblock %}
+      </header>
 
-    <!-- Header -->
-    <header class="w3-container w3-center w3-padding-32">
-        {% block header %}
-        {% endblock %}
-    </header>
+      {% block content %} {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+      <!-- END w3-content -->
+    </div>
 
-    <!-- END w3-content -->
-</div>
-
-<footer class="w3-container w3-dark-grey w3-padding-16 w3-margin-top">
-    <nav class="w3-row">
+    <footer class="w3-container w3-dark-grey w3-padding-16 w3-margin-top">
+      <nav class="w3-row">
         <div class="w3-threequarter w3-container">
-            {% if page_name not in ["categories", "tags", "authors"] %}
-                {% if articles_previous_page %}
-                    <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">
-                        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">&laquo; Previous</button>
-                    </a>
-                {% else %}
-                    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">&laquo; Previous</button>
-                {% endif %}
-
-                {% if articles_next_page %}
-                    <a href="{{ SITEURL }}/{{ articles_next_page.url }}">
-                        <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next &raquo;</button>
-                    </a>
-                {% else %}
-                    <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Next &raquo;</button>
-                {% endif %}
-            {% endif %}
+          {% if page_name not in ["categories", "tags", "authors"] %} {% if
+          articles_previous_page %}
+          <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">
+            <button
+              class="w3-button w3-black w3-padding-large w3-margin-bottom"
+            >
+              &laquo; Previous
+            </button>
+          </a>
+          {% else %}
+          <button
+            class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom"
+          >
+            &laquo; Previous
+          </button>
+          {% endif %} {% if articles_next_page %}
+          <a href="{{ SITEURL }}/{{ articles_next_page.url }}">
+            <button
+              class="w3-button w3-black w3-padding-large w3-margin-bottom"
+            >
+              Next &raquo;
+            </button>
+          </a>
+          {% else %}
+          <button
+            class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom"
+          >
+            Next &raquo;
+          </button>
+          {% endif %} {% endif %}
         </div>
         <div class="w3-quarter w3-container w3-right-align">
-            <a href="{{ SITEURL }}/">
-                <button class="w3-button w3-black w3-padding-large w3-margin-bottom">🏠 Home</button>
-            </a>
+          <a href="{{ SITEURL }}/">
+            <button
+              class="w3-button w3-black w3-padding-large w3-margin-bottom"
+            >
+              🏠 Home
+            </button>
+          </a>
         </div>
-    </nav>
-    Copyright {{ CURRENT_YEAR }} {{ AUTHOR }}<br/>
-    <a href="{{ LICENSE_URL | default('https://creativecommons.org/licenses/by/4.0/') }}">{{ LICENSE | default('Attribution 4.0 International') }}</a> license<br/>
-    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a><br/>
-</footer>
-</body>
-
+      </nav>
+      Copyright {{ CURRENT_YEAR }} {{ AUTHOR }}<br />
+      <a
+        href="{{ LICENSE_URL | default('https://creativecommons.org/licenses/by/4.0/') }}"
+        >{{ LICENSE | default('Attribution 4.0 International') }}</a
+      >
+      license<br />
+      Powered by
+      <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"
+        >w3.css</a
+      ><br />
+    </footer>
+  </body>
 </html>
